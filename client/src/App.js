@@ -19,7 +19,7 @@ export default function App() {
   async function getRets() {
     console.log('fetching data')
     try {
-      await axios.get('/propertyData') 
+      await axios.get('http://localhost:3500/propertyData') 
         .then(res => {
           sessionStorage.setItem('retsData', JSON.stringify(res));
         })

@@ -1,4 +1,4 @@
-const rets = require('@elm-street-technology/webapi-client');
+const rets = require('rets-client');
 require("dotenv").config();
 const express = require('express');
 const retsRouter = express.Router();
@@ -46,19 +46,24 @@ function outputFields(obj, opts) {
 
 retsRouter.get('/', (req, res) => {
     rets.getAutoLogoutClient(clientSettings, function(client) {
-      console.log(client)
-
+      console.log("===================================");
+      console.log("========  System Metadata  ========");
+      console.log("===================================");
+      console.log('   ~~~~~~~~~ Header Info ~~~~~~~~~');
+      outputFields(client.loginHeaderInfo)
+      console.log('   ~~~~~~~~~ System Data ~~~~~~~~~');
+      outputFields(client.systemData)
         return client.metadata.getResources()
-            // .then(function(data) {
-            //     for (var dataItem = 0; dataItem < data.results[0].metadata.length; dataItem++) {
-            //         outputFields(data.results[0].metadata[dataItem], {fields: ['ResourceID', 'StandardName', 'VisibleName', 'ObjectVersion']});
-            //     }
-            // })
-            // .then(function() {
-            //     return client.metadata.getClass("Property");
-            // }).then(function(data) {
-            //   return data;
-            // })
+            .then(function(data) {
+                for (var dataItem = 0; dataItem < data.results[0].metadata.length; dataItem++) {
+                    outputFields(data.results[0].metadata[dataItem], {fields: ['ResourceID', 'StandardName', 'VisibleName', 'ObjectVersion']});
+                }
+            })
+            .then(function() {
+                return client.metadata.getClass("Property");
+            }).then(function(data) {
+              return data;
+            })
             .then(function() {
                 return client.metadata.getTable("Property", "ResidentialProperty");
             }).then(function(data) {
