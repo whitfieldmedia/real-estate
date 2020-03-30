@@ -1,0 +1,142 @@
+@import 'assets';
+
+.navbar {
+    width: 100vw;
+    height: 80px;
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #f1f1f1;
+    z-index: 10;
+}
+.nav-logo-holder {
+    position: absolute;
+    left: 25px;
+    top: -7.5px;
+    padding: 0;
+    margin: 0;
+}
+.nav-logo {
+    height: 100px;
+    width: auto;
+    display: block;
+    position: relative;
+}
+
+.nav-link-wrapper {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-link-holder {
+    width: auto;
+    list-style-type: none;
+    height: auto;
+}
+
+.nav-link {
+    padding: 8px 12px;
+    font-size: 18px;
+    color: $black3;
+    text-decoration: none;
+    font-family: $exo;
+}
+.nav-link-holder:last-child {
+    margin-right: 25px;
+}
+.nav-toggle {
+    display: none;
+}
+
+@media only screen and (max-width: 750px) {
+    .nav-logo {
+        height: 80px;
+    }
+    .nav-logo-holder {
+        top: 0;
+    }
+    .nav-link {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .nav-link {
+        padding: 7px;
+        font-size: 15px;
+    }
+    .nav-logo {
+        height: 70px;
+    }
+    .nav-logo-holder {
+        top: 7px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .bar {
+        width: 30px;
+        height: 3px;
+        background-color: $gray6;
+        position: absolute;
+        transition: all 0.3s;
+    }
+    .nav-toggle {
+        display: block;
+        position: relative;
+        margin-right: 50px;
+        #bar2 {
+            margin-top: 8px;
+        }
+        #bar3 {
+            margin-top: -8px;
+        }
+    }
+    .open {
+        #bar1 {
+            display: none;
+        }
+        #bar2 {
+            transform: rotate(45deg);
+            margin-top: 0;
+        }
+        #bar3 {
+            transform: rotate(-45deg);
+            margin-top: 0;
+        }
+    }
+    .nav-link-wrapper {
+        display: none;
+    }
+    .nav-link-wrapper-open {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: flex-start;
+        position: absolute;
+        right: 0;
+        background: #f1f1f1;
+        top: 80px;
+        margin: 0;
+        padding: 0;
+    }
+    .nav-link-holder {
+        padding: 10px;
+        margin: 0;
+        border-top: 1px solid $gray6;
+        width: 100%;
+    }
+    .nav-link {
+        padding: 10px 12px;
+        font-size: 16px;
+        text-align: left;
+    }
+}

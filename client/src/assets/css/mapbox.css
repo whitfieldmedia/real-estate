@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow|Exo:300,400,500,600,700|Josefin+Sans:300,400,600,700|Montserrat:300,400,500,600,700,800|Nunito:300,400,600,700,800,900|Overpass:300,400,600,700,800&display=swap");
+#map {
+  position: relative;
+  height: 100%;
+  width: 50vw;
+}
+
+.mapContainer {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 100vh;
+  width: 50vw;
+}
+
+#markers {
+  width: 40px;
+  height: 40px;
+  color: blue;
+  position: relative;
+  z-index: 100;
+}
+
+.map-marker:hover {
+  transform: scale(1.1);
+}
+
+/*# sourceMappingURL=mapbox.css.map */

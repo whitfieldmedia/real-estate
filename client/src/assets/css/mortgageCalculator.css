@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow|Exo:300,400,500,600,700|Josefin+Sans:300,400,600,700|Montserrat:300,400,500,600,700,800|Nunito:300,400,600,700,800,900|Overpass:300,400,600,700,800&display=swap");
+.mortgage_calculator_page {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+}
+
+.mortgageCalculator {
+  width: 90vw;
+  height: 400px;
+}
+
+/*# sourceMappingURL=mortgageCalculator.css.map */

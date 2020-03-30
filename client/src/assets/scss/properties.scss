@@ -1,0 +1,36 @@
+@import 'assets';
+
+.promatch-iframe {
+    width: 100%;
+    height: 90vh;
+}
+
+.properties-page {
+    min-height: 100vh;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+}
+
+.property-container {
+    width: 40vw;
+    height: 90vh;
+    padding: 5vh 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background: $white;
+    overflow: scroll;
+}
+
+.property-img {
+    width: 250px;
+    height: 200px;
+    display: block;
+}

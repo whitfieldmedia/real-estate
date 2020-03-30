@@ -1,0 +1,64 @@
+@import 'assets';
+
+.contact-form {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+}
+
+.input-holder {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+    padding: 5px;
+}
+
+.form-label {
+    font-family: $montserrat;
+    font-size: 16px;
+    color: $gray6;
+}
+.input {
+    width: 90%;
+    min-width: 250px;
+    font-size: 20px;
+    font-family: $montserrat;
+    border: 1px solid $gray;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+.contact-button {
+    width: auto;
+    height: auto;
+    font-size: 20px;
+    font-family: $josefin;
+    margin-top: 15px;
+    padding: 5px 45px;
+    border: 1px solid $gray3;
+    background: $white2;
+    border-radius: 15px;
+    color: $orange2;
+    transition: all 0.3s ease;
+    i {
+        margin-left: 7.5px;
+        color: $orange2;
+    }
+}
+
+.contact-button:hover {
+    transform: scale(1.03);
+    box-shadow: 1px 2px 2px $gray;
+}
+
+.form-error {
+  font-size: 20px;
+  font-family: $montserrat;
+  color: red;
+  text-align: center;
+}

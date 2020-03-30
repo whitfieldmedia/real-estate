@@ -1,0 +1,37 @@
+@import url("https://fonts.googleapis.com/css?family=Barlow|Exo:300,400,500,600,700|Josefin+Sans:300,400,600,700|Montserrat:300,400,500,600,700,800|Nunito:300,400,600,700,800,900|Overpass:300,400,600,700,800&display=swap");
+.promatch-iframe {
+  width: 100%;
+  height: 90vh;
+}
+
+.properties-page {
+  min-height: 100vh;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.property-container {
+  width: 40vw;
+  height: 90vh;
+  padding: 5vh 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  background: #ffffff;
+  overflow: scroll;
+}
+
+.property-img {
+  width: 250px;
+  height: 200px;
+  display: block;
+}
+
+/*# sourceMappingURL=properties.css.map */
