@@ -5,33 +5,104 @@
 }
 
 .properties-page {
-  min-height: 100vh;
   position: relative;
-  height: 100vh;
+  height: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  padding-top: 50px;
 }
 
 .property-container {
-  width: 40vw;
-  height: 90vh;
+  width: 100%;
+  height: auto;
   padding: 5vh 0;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  position: absolute;
+  position: relative;
   right: 0;
   top: 0px;
   padding-top: 20px;
   padding-bottom: 30px;
   background: #ffffff;
-  overflow: scroll;
+}
+
+.property-holder {
+  display: flex;
+  width: 100%;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-decoration: none;
+  margin: 20px auto;
+  padding: 10px;
+  border-bottom: 2px solid #D97A49;
+}
+
+.property-column {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+}
+
+.property-detail-column {
+  width: auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 50%;
 }
 
 .property-img {
-  width: 250px;
-  height: 200px;
+  width: 400px;
+  height: auto;
   display: block;
+}
+
+.property-price {
+  color: #3A3C3F;
+  font-family: "Nunito", sans-serif;
+  font-size: 25px;
+  margin: 10px 10px 0 10px;
+  font-weight: 700;
+}
+
+.property-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 75%;
+}
+
+.property-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: #3A3C3F;
+  width: auto;
+  font-weight: 500;
+  margin: 5px 10px;
+  padding: 0;
+}
+
+.property-text:last-child {
+  width: auto;
+}
+
+.property-city {
+  color: #444444;
+  font-family: "Nunito", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  margin: 10px;
+  padding: 0;
 }
 
 /*# sourceMappingURL=properties.css.map */
