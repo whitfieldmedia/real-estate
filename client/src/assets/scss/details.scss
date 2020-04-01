@@ -100,7 +100,7 @@
     font-family: $nunito;
     color: $gray6;
     font-size: 16px;
-    margin: 5px 10px;
+    margin: 15px 10px 0 10px;
     padding: 0;
 }
 .detail-text {
@@ -163,4 +163,33 @@
     color: $gray6;
     font-family: $nunito;
 
+}
+
+
+@media only screen and (max-width: 700px) {
+    .detail-container {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+    .detail-gallery-column {
+        width: 98%;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .detail-column {
+        width: 98%;
+        margin: 0 auto;
+        height: 100%;
+    }
+}
+
+@media only screen and (max-width: 330px) {
+    .detail-contact-button {
+        font-size: 17px;
+    }
+    .detail-tour-button {
+        font-size: 17px;
+    }
 }

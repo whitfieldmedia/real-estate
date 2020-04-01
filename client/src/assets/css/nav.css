@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Barlow|Exo:300,400,500,600,700|Josefin+Sans:300,400,600,700|Montserrat:300,400,500,600,700,800|Nunito:300,400,600,700,800,900|Overpass:300,400,600,700,800&display=swap");
 .navbar {
   width: 100vw;
-  height: 80px;
+  height: 90px;
   display: flex;
   flex-flow: row;
   justify-content: flex-end;
@@ -18,9 +18,14 @@
 .nav-logo-holder {
   position: absolute;
   left: 25px;
-  top: -7.5px;
+  top: -15px;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .nav-logo {
@@ -28,6 +33,18 @@
   width: auto;
   display: block;
   position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-phone-link {
+  margin: -20px 0 0 0;
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  color: #3A3C3F;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .nav-link-wrapper {
@@ -59,7 +76,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 800px) {
   .nav-logo {
     height: 80px;
   }
@@ -71,8 +88,12 @@
   .nav-link {
     font-size: 16px;
   }
+
+  .nav-phone-link {
+    font-size: 15px;
+  }
 }
-@media only screen and (max-width: 650px) {
+@media only screen and (max-width: 700px) {
   .nav-link {
     padding: 7px;
     font-size: 15px;
@@ -85,8 +106,12 @@
   .nav-logo-holder {
     top: 7px;
   }
+
+  .nav-phone-link {
+    font-size: 14px;
+  }
 }
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 650px) {
   .bar {
     width: 30px;
     height: 3px;

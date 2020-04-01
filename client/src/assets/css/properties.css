@@ -105,4 +105,26 @@
   padding: 0;
 }
 
+@media only screen and (max-width: 800px) {
+  .property-img {
+    width: 300px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .property-holder {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+
+  .property-column {
+    width: 100%;
+  }
+
+  .property-detail-column {
+    width: 300px;
+  }
+}
+
 /*# sourceMappingURL=properties.css.map */

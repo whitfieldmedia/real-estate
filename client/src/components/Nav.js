@@ -15,6 +15,9 @@ export default function Nav() {
         <nav className="navbar">
             <Link to="/" className="nav-logo-holder">
                 <img src={logo} className="nav-logo" alt="Coltmor Realty Co." />
+                <p className="nav-phone-link">
+                    (662) 229-7003
+                </p>
             </Link>
             <div onClick={handleClick} className={open ? "nav-toggle open" : "nav-toggle closed"}>
                 <span className="bar" id="bar1"></span>

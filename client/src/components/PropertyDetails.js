@@ -1,26 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import Gallery from 'react-grid-gallery';
-import thermometer from '../assets/icons/thermometer.svg';
-import lot from '../assets/icons/region.svg';
+import Form from './Form';
+import logoDark from '../assets/images/coltmor-realty.png';
 import '../assets/scss/details.scss';
 
 export default function PropertyDetails () {
-    const [images, setImages] = useState([])
+    const [ images, setImages ] = useState([]);
+    const [ isClicked, setIsClicked ] = useState(false)
+    const [ isTourClicked, setIsTourClicked ] = useState(false)
     const id = sessionStorage.getItem('propertyId')
     const retsData = JSON.parse(sessionStorage.getItem('retsData'));
     useEffect(() => {
         window.scrollTo(0,0);
-        setPhotos();
-    }, [])
-    function setPhotos() {
-        var num;
-        var alt;
-        retsData.data.results.filter(res => res.ListingID === id).map(res => {
-            num = res.PhotoCount
-            return alt = res.StreetNumber + " " + res.StreetName
-        })
+    })
+    function handleClick() {
+        setIsClicked(true)
+    }
+    function handleClose() {
+        if(isTourClicked) {
+            return setIsTourClicked(false)
+        } 
+        if(isClicked) {
+            return setIsClicked(false)
+        }
+    }
+    function handleTourClick() {
+        return setIsTourClicked(true)
+    }
+    function setPhotos(num, alt) {
         var imgArray = []
-        for(var i = 0; i < num; i++) {
+        var count = Number(num)
+        for(var i = 0; i < count; i++) {
             var imgNum = i + 1
             if ( imgNum < 10) {
                 imgNum = "0" + imgNum
@@ -29,21 +39,29 @@ export default function PropertyDetails () {
             var img = {
                 src: imgUrl,
                 thumbnail: imgUrl,
-                thumbnailWidth: '50%',
-                thumbnailHeight: 'auto',
+                thumbnailWidth: 320,
+                thumbnailHeight: 225,
                 alt: alt
             }
             imgArray.push(img);
         }
-        return setImages(imgArray)
+        console.log(imgArray.length)
+        console.log(Number(num))
+        if(imgArray.length === count && images.length !== count) {
+            console.log(imgArray)
+            setImages(imgArray)
+        }
     }
     function addCommas(num) {
         return (num + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
     }
     function mapDetails () {
         return retsData.data.results.filter(res => res.ListingID === id).map(res => {
-            return (
-                <div className="detail-container">
+            var num = res.PhotoCount;
+            var alt = res.StreetNumber + " " + res.StreetName;
+            setPhotos(num, alt)
+            return(
+                <div key={res.ListingID} className="detail-container">
                     <div className="detail-gallery-column">
                         <Gallery images={images} id="grid-gallery" rowHeight={225} enableImageSelection={false} />
                     </div>     
@@ -67,15 +85,14 @@ export default function PropertyDetails () {
                                 </p>
                             </div>
                             <div className="detail-cta-row">
-                                <button className="detail-contact-button">
+                                <button onClick={handleClick} className="detail-contact-button">
                                     Contact Agent
                                 </button>
-                                <button className="detail-tour-button">
+                                <button onClick={handleTourClick} className="detail-tour-button">
                                     Take a Tour
                                 </button>
                             </div>
                         </div>
-
                         <p className="detail-par">
                             {res.PublicRemarks}
                         </p>
@@ -233,6 +250,68 @@ export default function PropertyDetails () {
     return ( 
         <div className="detail-page">
             {mapDetails()}
+            {isClicked
+            ?
+            <div className="home-popup-form">
+                <div className="popup-form-wrapper" id="popup-wrapper">
+                <div className="close-popup" onClick={handleClose}>
+                    X
+                </div>
+                    <h2 className="popup-header">
+                        Contact Your Local Area Expert
+                    </h2>
+                    <div className="popup-row">
+                        <div className="popup-column">
+                            <p className="popup-par">
+                                Chris Reed
+                            </p>
+                            <a href="tel:6622297003" className="popup-par">
+                                (662) 229-7003
+                            </a>
+                            <p className="popup-par">
+                                330 Longwood Drive <br/>
+                                Grenada, Ms 38901
+                            </p>
+                            <img src={logoDark} className="popup-logo" alt="Coltmor Realty - Grenada, Ms"/>
+                        </div>
+                        <div className="popup-column">
+                            <Form />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            : null}
+            {isTourClicked
+            ?
+            <div className="home-popup-form">
+                <div className="popup-form-wrapper" id="popup-wrapper">
+                <div className="close-popup" onClick={handleClose}>
+                    X
+                </div>
+                    <h2 className="popup-header">
+                        Schedule a Tour
+                    </h2>
+                    <div className="popup-row">
+                        <div className="popup-column">
+                            <p className="popup-par">
+                                Chris Reed
+                            </p>
+                            <a href="tel:6622297003" className="popup-par">
+                                (662) 229-7003
+                            </a>
+                            <p className="popup-par">
+                                330 Longwood Drive <br/>
+                                Grenada, Ms 38901
+                            </p>
+                            <img src={logoDark} className="popup-logo" alt="Coltmor Realty - Grenada, Ms"/>
+                        </div>
+                        <div className="popup-column">
+                            <Form />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            : null}
         </div>
     )
 }

@@ -106,7 +106,7 @@
   font-family: "Nunito", sans-serif;
   color: #444444;
   font-size: 16px;
-  margin: 5px 10px;
+  margin: 15px 10px 0 10px;
   padding: 0;
 }
 
@@ -175,6 +175,36 @@
   font-size: 18px;
   color: #444444;
   font-family: "Nunito", sans-serif;
+}
+
+@media only screen and (max-width: 700px) {
+  .detail-container {
+    display: flex;
+    flex-flow: column-reverse;
+  }
+
+  .detail-gallery-column {
+    width: 98%;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0 auto;
+  }
+
+  .detail-column {
+    width: 98%;
+    margin: 0 auto;
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 330px) {
+  .detail-contact-button {
+    font-size: 17px;
+  }
+
+  .detail-tour-button {
+    font-size: 17px;
+  }
 }
 
 /*# sourceMappingURL=details.css.map */

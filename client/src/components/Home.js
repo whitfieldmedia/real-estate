@@ -3,11 +3,33 @@ import logo from '../assets/images/coltmor_realty_logo.png';
 import logoDark from '../assets/images/coltmor-realty.png';
 import Chris from '../assets/images/Coltmor_Realty_Grenada_The_City_That_Smiles.jpg';
 import Form from './Form';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 import '../assets/css/home.css';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
+    const retsData = JSON.parse(sessionStorage.getItem('retsData'))
     const [ isClicked, setIsClicked ] = useState(false)
     const [ count, setCount ] = useState(0)
+    const responsive = {
+        superLargeDesktop: {
+          breakpoint: { max: 2125, min: 1700 },
+          items: 4,
+        },
+        desktop: {
+          breakpoint: { max: 1700, min: 1275 },
+          items: 3,
+        },
+        tablet: {
+          breakpoint: { max: 1275, min: 850 },
+          items: 2,
+        },
+        mobile: {
+          breakpoint: { max: 850, min: 0 },
+          items: 1,
+        },
+      };
     useEffect(() => {
         window.scrollTo(0,0)
     },[])
@@ -34,7 +56,51 @@ export default function Home() {
     const handleClose = () => {
         return setIsClicked(false)
     }
-
+    function addCommas(num) {
+        return (num + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+    }
+    function setPropertyId(id) {
+        sessionStorage.setItem('propertyId', id)
+    }
+    function featuredProperties() {
+        return retsData.data.results.filter(res => res.ListAgentOfficeID === "COLT55").map(res => {
+            
+            var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/c/${res.ListingID}-01.jpg?Session=531000566`
+            var alt = res.StreetNumber + " " + res.StreetName
+            return (
+                <Link to="/property-details" onClick={() => setPropertyId(res.ListingID)} className="home-property-container" key={res.ListingID}>
+                    <div className="home-property-column">
+                        <img className="home-property-img" src={img} alt={alt} />
+                    </div>
+                    <div className="home-property-detail-column">
+                        <p className="home-price">
+                            ${addCommas(res.ListPrice)}
+                        </p>
+                        <p className="home-city">
+                        {res.StreetNumber} {res.StreetName} {res.city}, MS
+                        </p>
+                        <div className="home-property-row">
+                            <p className="home-property-text">
+                                {res.Bedrooms} bd
+                            </p>
+                            <p className="home-property-text">
+                                {res.Baths} ba
+                            </p>
+                            <p className="home-property-text">
+                                {res.LivingArea} sqft
+                            </p>
+                            <p className="home-property-text">
+                                {res.LotSizeArea} Acres
+                            </p>
+                            <p className="home-property-text">
+                                {res.Parking}
+                            </p>                                   
+                        </div>
+                    </div>
+                </Link>
+            )
+        })
+    }
     return (
         <div className="home-page">
             <header className="home-hero-wrapper">
@@ -94,7 +160,12 @@ export default function Home() {
                 </div>
             </div>
             <div className="home-listing-container">
-
+                <h2 className="home-header2">
+                    Featured Listings
+                </h2>
+                <Carousel responsive={responsive} centerMode={false} className="home-featured-holder">
+                    {featuredProperties()}
+                </Carousel>
             </div>
             <div className="home-review-container">
                 <div className="arrow" onClick={handlePrev}>

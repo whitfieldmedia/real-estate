@@ -61,13 +61,9 @@ export default function Properties() {
     function showColtmorProperties() {
         return retsData.data.results.filter(res => {
             if(res.ListAgentOfficeID === "COLT55") {
-                console.log(res)
-            }
-            console.log(res.ListAgentOfficeID)
-            if(res.ListAgentOfficeID === "COLT55") {
                 return res;
             } else {
-                return;
+                return null;
             }
         }).map(res => {
             return mapProperties(res)
