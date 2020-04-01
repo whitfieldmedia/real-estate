@@ -4,6 +4,7 @@ import logoDark from '../assets/images/coltmor-realty.png';
 import Chris from '../assets/images/Coltmor_Realty_Grenada_The_City_That_Smiles.jpg';
 import Form from './Form';
 import Carousel from 'react-multi-carousel';
+import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import '../assets/css/home.css';
 import { Link } from 'react-router-dom';
@@ -33,10 +34,21 @@ export default function Home() {
       };
     useEffect(() => {
         window.scrollTo(0,0);
-        if(retsData) {
-            setIsLoaded(true)
+        if(!retsData) {
+            getData()
         }
-    },[])
+    })
+    async function getData() {
+        try {
+            await axios.get('/propertyData') 
+              .then(res => {
+                sessionStorage.setItem('retsData', JSON.stringify(res));
+                setIsLoaded(true)
+              })
+          } catch(err) {
+            console.log(err)
+          }
+    }
     function handlePrev() {
         if(count > 0) {
             setCount(count - 1)
@@ -166,12 +178,13 @@ export default function Home() {
                 <h2 className="home-header2">
                     Featured Listings
                 </h2>
+                {isLoaded ?                 
                 <Carousel responsive={responsive} centerMode={false} className="home-featured-holder">
-                {isLoaded 
-                ? featuredProperties()
-                : null}
-                    
+                    {featuredProperties()}
                 </Carousel>
+                : <div className="home-property-container"></div>}
+                    
+
             </div>
             <div className="home-review-container">
                 <div className="arrow" onClick={handlePrev}>
