@@ -1,12 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+import axios from 'axios';
 import '../assets/css/properties.css';
 
 export default function Properties() {
     const retsData = JSON.parse(sessionStorage.getItem('retsData'));
+    const [ isLoaded, setIsLoaded ] = useState(false)
     useEffect(() => {
         window.scrollTo(0,0);
+        if(!retsData) {
+            getData()
+        } else {
+            setIsLoaded(true);
+        }
     }, [])
+    async function getData() {
+        try {
+            await axios.get('/propertyData') 
+              .then(res => {
+                sessionStorage.setItem('retsData', JSON.stringify(res));
+                setIsLoaded(true)
+              })
+          } catch(err) {
+            console.log(err)
+          }
+    }
     function handleClick(id) {
         sessionStorage.setItem('propertyId', id)
     }
@@ -70,7 +88,7 @@ export default function Properties() {
         })
     }
     return (
-        retsData ? 
+        isLoaded ? 
         <div className="properties-page">
             <div className="property-container">
                 {showColtmorProperties()}
