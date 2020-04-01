@@ -12,6 +12,7 @@ export default function Home() {
     const retsData = JSON.parse(sessionStorage.getItem('retsData'))
     const [ isClicked, setIsClicked ] = useState(false)
     const [ count, setCount ] = useState(0)
+    const [ isLoaded, setIsLoaded ] = useState(false)
     const responsive = {
         superLargeDesktop: {
           breakpoint: { max: 2125, min: 1700 },
@@ -31,7 +32,10 @@ export default function Home() {
         },
       };
     useEffect(() => {
-        window.scrollTo(0,0)
+        window.scrollTo(0,0);
+        if(retsData) {
+            setIsLoaded(true)
+        }
     },[])
     function handlePrev() {
         if(count > 0) {
@@ -64,7 +68,6 @@ export default function Home() {
     }
     function featuredProperties() {
         return retsData.data.results.filter(res => res.ListAgentOfficeID === "COLT55").map(res => {
-            
             var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/c/${res.ListingID}-01.jpg?Session=531000566`
             var alt = res.StreetNumber + " " + res.StreetName
             return (
@@ -164,7 +167,10 @@ export default function Home() {
                     Featured Listings
                 </h2>
                 <Carousel responsive={responsive} centerMode={false} className="home-featured-holder">
-                    {featuredProperties()}
+                {isLoaded 
+                ? featuredProperties()
+                : null}
+                    
                 </Carousel>
             </div>
             <div className="home-review-container">
