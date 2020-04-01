@@ -183,13 +183,30 @@
         margin: 0 auto;
         height: 100%;
     }
+    .detail-price {
+        margin-left: 10px;
+    }
+    .detail-address {
+        margin-left: 10px;
+    }
+    .detail-row {
+        margin-left: 10px;
+    }
 }
 
-@media only screen and (max-width: 330px) {
+@media only screen and (max-width: 400px) {
     .detail-contact-button {
         font-size: 17px;
     }
     .detail-tour-button {
         font-size: 17px;
+    }
+}
+@media only screen and (max-width: 350px) {
+    .detail-contact-button {
+        font-size: 16px;
+    }
+    .detail-tour-button {
+        font-size: 16px;
     }
 }

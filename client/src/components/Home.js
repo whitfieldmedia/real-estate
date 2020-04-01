@@ -36,6 +36,8 @@ export default function Home() {
         window.scrollTo(0,0);
         if(!retsData) {
             getData()
+        } else {
+            setIsLoaded(true);
         }
     })
     async function getData() {

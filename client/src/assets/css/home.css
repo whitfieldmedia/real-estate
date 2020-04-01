@@ -109,6 +109,10 @@
   background: #ffffff;
   border-radius: 10px;
   z-index: 55;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .close-popup {
@@ -125,6 +129,8 @@
 .popup-header {
   font-family: "Nunito", sans-serif;
   font-size: 30px;
+  margin: 10px 0;
+  padding: 0;
   color: #fc9258;
   text-align: center;
 }
@@ -167,6 +173,8 @@
   width: 200px;
   height: auto;
   display: block;
+  margin: 0;
+  padding: 0;
 }
 
 .home-about-section {
@@ -517,6 +525,11 @@
 
   .home-header {
     font-size: 22px;
+  }
+
+  .home-form-holder {
+    width: 300px;
+    margin: 0 auto;
   }
 }
 @media only screen and (max-width: 425px) {

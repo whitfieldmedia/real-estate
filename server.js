@@ -52,6 +52,12 @@ app.use('/contact', (req, res) => {
           <p style="font-size: 24px; color: #3a3a3a; font-weight: 500; margin: 0 10px 10px 10px ">
             ${req.body.phone}
           </p>
+          <p style="font-size: 24px; color: #3a3a3a; font-weight: 500; margin: 0 10px 10px 10px;">
+            Date:
+          </p>
+          <p style="font-size: 24px; color: #3a3a3a; font-weight: 500; margin: 0 10px 10px 10px;">
+            ${req.body.date}
+          </p>
           <p style="font-size: 20px; color: #4a4a4a; font-weight: 400; margin: 10px 0 5px 0">
             Message:
           </p>

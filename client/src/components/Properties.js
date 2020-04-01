@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom'
-import '../assets/scss/properties.scss';
+import '../assets/css/properties.css';
 
 export default function Properties() {
     const retsData = JSON.parse(sessionStorage.getItem('retsData'));

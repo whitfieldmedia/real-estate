@@ -46,19 +46,19 @@ function outputFields(obj, opts) {
 
 retsRouter.get('/', (req, res) => {
     rets.getAutoLogoutClient(clientSettings, function(client) {
-      console.log("===================================");
-      console.log("========  System Metadata  ========");
-      console.log("===================================");
-      console.log('   ~~~~~~~~~ Header Info ~~~~~~~~~');
-      outputFields(client.loginHeaderInfo)
-      console.log('   ~~~~~~~~~ System Data ~~~~~~~~~');
-      outputFields(client.systemData)
+      // console.log("===================================");
+      // console.log("========  System Metadata  ========");
+      // console.log("===================================");
+      // console.log('   ~~~~~~~~~ Header Info ~~~~~~~~~');
+      // outputFields(client.loginHeaderInfo)
+      // console.log('   ~~~~~~~~~ System Data ~~~~~~~~~');
+      // outputFields(client.systemData)
         return client.metadata.getResources()
-            .then(function(data) {
-                for (var dataItem = 0; dataItem < data.results[0].metadata.length; dataItem++) {
-                    outputFields(data.results[0].metadata[dataItem], {fields: ['ResourceID', 'StandardName', 'VisibleName', 'ObjectVersion']});
-                }
-            })
+            // .then(function(data) {
+            //     for (var dataItem = 0; dataItem < data.results[0].metadata.length; dataItem++) {
+            //         outputFields(data.results[0].metadata[dataItem], {fields: ['ResourceID', 'StandardName', 'VisibleName', 'ObjectVersion']});
+            //     }
+            // })
             .then(function() {
                 return client.metadata.getClass("Property");
             }).then(function(data) {
@@ -76,10 +76,10 @@ retsRouter.get('/', (req, res) => {
                 return plucked;
             })
             .then(function (fields) {
-                console.log("___________----------____________")
+                // console.log("___________----------____________")
                 return client.search.query("Property", "ResidentialProperty", "(DaysOnMarket=1+)", {limit: 100,offset:0})
                     .then(function (searchData) {
-                      console.log(searchData)
+                      // console.log(searchData)
                     res.send(searchData)
                 })
     }).catch(function(err) {

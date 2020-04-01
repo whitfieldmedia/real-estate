@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Gallery from 'react-grid-gallery';
 import Form from './Form';
+import TourForm from './TourForm';
 import logoDark from '../assets/images/coltmor-realty.png';
-import '../assets/scss/details.scss';
+import '../assets/css/details.css';
 
 export default function PropertyDetails () {
     const [ images, setImages ] = useState([]);
@@ -45,10 +46,7 @@ export default function PropertyDetails () {
             }
             imgArray.push(img);
         }
-        console.log(imgArray.length)
-        console.log(Number(num))
         if(imgArray.length === count && images.length !== count) {
-            console.log(imgArray)
             setImages(imgArray)
         }
     }
@@ -306,7 +304,7 @@ export default function PropertyDetails () {
                             <img src={logoDark} className="popup-logo" alt="Coltmor Realty - Grenada, Ms"/>
                         </div>
                         <div className="popup-column">
-                            <Form />
+                            <TourForm />
                         </div>
                     </div>
                 </div>
