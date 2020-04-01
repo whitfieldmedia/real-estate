@@ -196,17 +196,19 @@
 
 @media only screen and (max-width: 400px) {
     .detail-contact-button {
-        font-size: 17px;
+        font-size: 16px;
+        width: 48%;
     }
     .detail-tour-button {
-        font-size: 17px;
+        font-size: 16px;
+        width: 48%
     }
 }
 @media only screen and (max-width: 350px) {
     .detail-contact-button {
-        font-size: 16px;
+        font-size: 15px;
     }
     .detail-tour-button {
-        font-size: 16px;
+        font-size: 15px;
     }
 }
