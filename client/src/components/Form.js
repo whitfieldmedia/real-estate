@@ -6,7 +6,7 @@ export default function Form() {
         window.scrollTo(0,0)
     }, [])
     return (
-        <form className="contact-form">
+        <form className="contact-form" action="https://formspree.io/chris@coltmor.com" method="POST">
             <div className="input-holder">
                 <label htmlFor="form_name" className="form-label">
                     Name*
