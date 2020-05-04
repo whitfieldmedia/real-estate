@@ -43,7 +43,7 @@ export default function Form() {
                     name="message"
                 />
             </div>
-            <button onClick={(e) => handleSubmit(e)} className="contact-button">
+            <button className="contact-button">
                 Send
                 <i className="fas fa-paper-plane"></i>
             </button>
