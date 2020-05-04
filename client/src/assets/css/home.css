@@ -10,7 +10,7 @@
 }
 
 .home-hero-wrapper {
-  height: 70vh;
+  height: 80vh;
   width: 100vw;
   position: relative;
   margin: 0;
@@ -20,9 +20,10 @@
   flex-flow: column;
   justify-content: flex-start;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.1);
   background-image: url("../images/living_room.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: overlay;
 }
@@ -79,7 +80,7 @@
 }
 
 .home-hero-logo {
-  height: 100px;
+  height: 175px;
   width: auto;
   z-index: 1;
   margin-top: 150px;

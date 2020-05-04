@@ -2,6 +2,8 @@ import React from 'react';
 import logo from '../assets/images/coltmor-realty-logo.png';
 import realtor from '../assets/images/realtor.png';
 import zillow from '../assets/images/zillow_logo.png';
+import eho from '../assets/images/fheo125.png';
+import realtorLogo from '../assets/images/web_R_blk.jpg';
 import '../assets/css/footer.css';
 
 export default function Footer() {
@@ -88,9 +90,15 @@ export default function Footer() {
                 </a>
             </div>
             <div className="footer-row">
+                <div className="footer-logo2">
+                    <img className="footer-eho" src={eho} alt="equal housing opportunity"/>
+                </div>
+                <img src={realtorLogo} className="footer-logo2" alt="Realtor"/>
+            </div>
+            <div className="footer-row">
                 <p className="footer-disclaimer">
                     @2020 <strong> Coltmor Realty </strong> all rights reserved. 
-                    Build by 
+                    Built by 
                     <a className="footer-disclaimer-link" 
                         href="https://www.wemakeads.com" 
                         target="_blank" 

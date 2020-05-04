@@ -128,10 +128,14 @@
 }
 
 .detail-facts-container {
-  display: flex;
+  display: block;
   flex-flow: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  height: auto;
+  width: auto;
+  margin: 5px;
+  position: relative;
 }
 
 .detail-header3 {
@@ -139,24 +143,31 @@
   font-size: 22px;
   color: #131313;
   width: 100%;
-  margin: 25px 0 0 0;
+  margin: 25px 0;
+  height: auto;
+  position: relative;
 }
 
 .detail-header4 {
   font-family: "Nunito", sans-serif;
   font-size: 18px;
   color: #3A3C3F;
-  margin: 10px 0 0 0;
+  margin: 15px 0;
+  position: relative;
 }
 
 .sub-fact-holder {
   display: flex;
   flex-flow: row wrap;
+  height: auto;
+  width: 100%;
+  position: relative;
 }
 
 .sub-fact-column {
   width: auto;
   min-width: 45%;
+  height: auto;
   display: flex;
   flex-flow: column;
   justify-content: flex-start;

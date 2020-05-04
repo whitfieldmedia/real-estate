@@ -11,6 +11,7 @@ export default function PropertyDetails () {
     const [ isTourClicked, setIsTourClicked ] = useState(false)
     const id = sessionStorage.getItem('propertyId')
     const retsData = JSON.parse(sessionStorage.getItem('retsData'));
+    console.log(retsData)
     useEffect(() => {
         window.scrollTo(0,0);
     })
@@ -240,6 +241,21 @@ export default function PropertyDetails () {
                                 </div>
                             </div>
                         </div> 
+                        <h3 className="detail-header4">
+                            Listing Provided By
+                        </h3>
+                        <p className="detail-par">
+                            {res.ListAgentFirstName} {res.ListAgentLastName}
+                        </p>
+                        <p className="detail-par">
+                            {res.ListOfficeName}
+                        </p>
+                        <p className="detail-par">
+                            {res.ListAgentOfficePhone}
+                        </p>
+                        <p className="detail-par">
+                            MLS Disclaimer: Copyright Grenada Board of Realtors. All rights reserved. Information is deemed reliable but not guaranteed.
+                        </p>
                     </div>
                 </div>
             )
