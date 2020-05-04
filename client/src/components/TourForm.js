@@ -7,11 +7,6 @@ export default function TourForm() {
     }, [])
     return (
         <form className="contact-form">
-          {error
-          ? <p className="form-error">
-              Please enter your name, email & phone number.
-            </p>
-          : null}
             <div className="input-holder">
                 <label htmlFor="form_" className="form-label">
                     Name*
