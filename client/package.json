@@ -6,6 +6,7 @@
     "axios": "^0.19.2",
     "google-map-react": "^1.1.7",
     "node-sass": "^4.13.1",
+    "pure-react-carousel": "^1.27.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-grid-gallery": "^0.5.5",

@@ -1,76 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/images/coltmor_realty_logo.png';
+import logo from '../assets/images/coltmor_logo.png';
 import logoDark from '../assets/images/coltmor-realty.png';
-import Chris from '../assets/images/Coltmor_Realty_Grenada_The_City_That_Smiles.jpg';
-import Form from './Form';
+import background from '../assets/images/coltmor-realty-background-long.jpg';
+import house from '../assets/images/round1.jpg';
+import house2 from '../assets/images/round2.jpg';
+import Reviews from './Reviews';
 import Carousel from 'react-multi-carousel';
-import axios from 'axios';
 import 'react-multi-carousel/lib/styles.css';
 import '../assets/css/home.css';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
-    const retsData = JSON.parse(sessionStorage.getItem('retsData'))
+    const cities = JSON.parse(localStorage.getItem('cities'))
+    const data = JSON.parse(localStorage.getItem('data'))
     const [ isClicked, setIsClicked ] = useState(false)
-    const [ count, setCount ] = useState(0)
     const [ isLoaded, setIsLoaded ] = useState(false)
+    const [ address, setAddress ] = useState('')
+    const [ sell, setSell ] = useState(true)
+    const [ city, setCity ] = useState('')
     const responsive = {
         superLargeDesktop: {
           breakpoint: { max: 2125, min: 1700 },
           items: 4,
         },
         desktop: {
-          breakpoint: { max: 1700, min: 1275 },
+          breakpoint: { max: 1700, min: 1200 },
           items: 3,
         },
         tablet: {
-          breakpoint: { max: 1275, min: 850 },
+          breakpoint: { max: 1200, min: 700 },
           items: 2,
         },
         mobile: {
-          breakpoint: { max: 850, min: 0 },
+          breakpoint: { max: 700, min: 0 },
           items: 1,
         },
       };
     useEffect(() => {
         window.scrollTo(0,0);
-        if(!retsData) {
-            getData()
-        } else {
-            setIsLoaded(true);
+        if(data) {
+            setIsLoaded(true)
         }
-    })
-    async function getData() {
-        try {
-            await axios.get('/propertyData') 
-              .then(res => {
-                sessionStorage.setItem('retsData', JSON.stringify(res));
-                setIsLoaded(true)
-              })
-          } catch(err) {
-            console.log(err)
-          }
-    }
-    function handlePrev() {
-        if(count > 0) {
-            setCount(count - 1)
-        } else {
-            setCount(4)
-        }
-    }
-
-    function handleNext() {
-        if(count < 4) {
-            setCount(count + 1)
-        } else {
-            setCount(0)
-        }
-    }
-
-    const handleClick = () => {
-        setIsClicked(true)
-    }
-
+    }, [data])
     const handleClose = () => {
         return setIsClicked(false)
     }
@@ -78,25 +49,54 @@ export default function Home() {
         return (num + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
     }
     function setPropertyId(id) {
-        sessionStorage.setItem('propertyId', id)
+        localStorage.setItem('propertyId', id)
+    }
+    function lotSize(str) {
+        if(str.split(' ')[1] === 'Acres') {
+            return str;
+        } else {
+            return str + ' Acres'
+        }
+    }
+
+    function split(str) {
+        return str.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
     }
     function featuredProperties() {
-        return retsData.data.results.filter(res => res.ListAgentOfficeID === "COLT55").map(res => {
-            var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/c/${res.ListingID}-01.jpg?Session=531000566`
-            var alt = res.StreetNumber + " " + res.StreetName
-            return (
-                <Link to="/property-details" onClick={() => setPropertyId(res.ListingID)} className="home-property-container" key={res.ListingID}>
-                    <div className="home-property-column">
-                        <img className="home-property-img" src={img} alt={alt} />
-                    </div>
-                    <div className="home-property-detail-column">
-                        <p className="home-price">
-                            ${addCommas(res.ListPrice)}
-                        </p>
-                        <p className="home-city">
-                        {res.StreetNumber} {res.StreetName} {res.city}, MS
-                        </p>
+        return data.results.filter(res => res.ListAgentOfficeID === "COLT55").sort((a, b) => b.ListPrice-a.ListPrice).map(res => {
+            var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${res.ListingID}-01.jpg?Session=531000566`
+            if(res.PropertyType === "LotsAndLand") {
+                return (
+                    <Link to={`/property-details/${res.ListingID}`} onClick={() => setPropertyId(res.ListingID)} className="home-property-holder" key={res.ListingID}>
+                        <div className="home-property-img-holder">
+                            <img className="home-property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                        </div>
                         <div className="home-property-row">
+                            <p className="home-price">
+                                ${addCommas(res.ListPrice)}
+                            </p>
+                            <p className="home-property-text">
+                                {lotSize(res.LotSizeDim)}
+                            </p>                     
+                        </div>
+                        <p className="home-property-city">
+                            {res.StreetNumber} {res.StreetName} {Number(res.City) > 0 ? res.County : res.City}, MS {res.PostalCode}
+                        </p>
+                        <p className="home-property-par">
+                            {res.ListingStatus} {split(res.PropertyType)}
+                        </p>
+                    </Link>
+                )
+            } else {
+                return (
+                    <Link to={`/property-details/${res.ListingID}`} onClick={() => setPropertyId(res.ListingID)} className="home-property-holder" key={res.ListingID}>
+                        <div className="home-property-img-holder">
+                            <img className="home-property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                        </div>
+                        <div className="home-property-row">
+                            <p className="home-price">
+                                ${addCommas(res.ListPrice)}
+                            </p>
                             <p className="home-property-text">
                                 {res.Bedrooms} bd
                             </p>
@@ -105,29 +105,71 @@ export default function Home() {
                             </p>
                             <p className="home-property-text">
                                 {res.LivingArea} sqft
-                            </p>
-                            <p className="home-property-text">
-                                {res.LotSizeArea} Acres
-                            </p>
-                            <p className="home-property-text">
-                                {res.Parking}
-                            </p>                                   
+                            </p>                     
                         </div>
-                    </div>
-                </Link>
-            )
+                        <p className="home-property-city">
+                            {res.StreetNumber} {res.StreetName} {res.City}, MS {res.PostalCode}
+                        </p>
+                        <p className="home-property-par">
+                            {res.ListingStatus} {split(res.PropertyType)}
+                        </p>
+                    </Link>
+                )
+            }
         })
     }
+    function handleSubmit() {
+        localStorage.setItem('sort', 'city')
+        localStorage.setItem('city', city)
+    }
+
     return (
         <div className="home-page">
             <header className="home-hero-wrapper">
+                <img src={background} className="home-hero" alt="Coltmor Realty Co."/>
+                <div className="home-hero-mid" />
                 <img src={logo} className="home-hero-logo" alt="Coltmor Realty Co."/>
                 <h2 className="home-header">
-                    Going the extra mile to make buying and selling real estate a breeze.
+                    Serving Grenada Ms and the Surrounding Areas.
                 </h2>
-                <div className="home-hero-link"
-                    onClick={handleClick}>
-                    Find your next home
+                <div className="home-bs-wrapper">
+                    <div className="home-bs-row">
+                        <div onClick={() => setSell(true)} className={sell ? "home-bs-selected" : "home-bs-select"}>
+                            Sell Your Home
+                        </div>
+                        <div onClick={() => setSell(false)} className={sell ? "home-bs-select" : "home-bs-selected"}>
+                            Buy a Home
+                        </div>
+                    </div>
+                    {sell ? 
+                    <div className="home-sell-row">
+                        <input type="text"
+                            className="home-address-input"
+                            name="address"
+                            value={address}
+                            onChange={(e) => setAddress(e.target.value)}
+                            placeholder="Address, City, State & Zip"
+                        />
+                        <button className="home-sell-button" onClick={() => setIsClicked(true)}> Sell Your Home </button>
+                        <button className="home-sell-button2" onClick={() => setIsClicked(true)}>  
+                            <span className="material-icons"> search </span>
+                        </button>
+                    </div>
+                    : 
+                    <form className="home-sell-row">
+                        <select className="city-dropdown" onChange={(e) => setCity(e.target.value)}>
+                            <option className="city-dropdown-value"> Select a City </option>
+                            <option defaultValue="all" defaultChecked="All"> All </option>
+                            {cities.map(city => (
+                                <option key={city} className="city-dropdown-value" value={city}> {city} </option>
+                            ))}
+                        </select>
+                        <Link className="home-sell-button" to="/properties" onClick={() => handleSubmit()}> Find Your Home </Link>
+                        <Link className="home-sell-button2" to="/properties" onClick={() => handleSubmit()}>  
+                            <span className="material-icons"> search </span>
+                        </Link>
+                    </form>
+                    }
                 </div>
             </header>
             {isClicked
@@ -138,7 +180,7 @@ export default function Home() {
                     X
                 </div>
                     <h2 className="popup-header">
-                        Contact Your Local Area Expert
+                        Contact your local expert Chris Reed.
                     </h2>
                     <div className="popup-row">
                         <div className="popup-column">
@@ -155,12 +197,83 @@ export default function Home() {
                             <img src={logoDark} className="popup-logo" alt="Coltmor Realty - Grenada, Ms"/>
                         </div>
                         <div className="popup-column">
-                            <Form />
+                        <form className="contact-form" action="https://formspree.io/chris@coltmor.com" method="POST">
+                            <div className="input-holder">
+                                <label htmlFor="form_name" className="form-label">
+                                    Name*
+                                </label>
+                                <input type="text"
+                                    className="input"
+                                    name="name"
+                                />
+                            </div>
+                            <div className="input-holder">
+                                <label htmlFor="form_email" className="form-label">
+                                    Email*
+                                </label>
+                                <input type="text"
+                                    className="input"
+                                    name="email"
+                                />
+                            </div>
+                            <div className="input-holder">
+                                <label htmlFor="form_phone" className="form-label">
+                                    Phone*
+                                </label>
+                                <input type="text"
+                                    className="input"
+                                    name="phone"
+                                />
+                            </div>
+                            <div className="input-holder">
+                                <label htmlFor="form_address" className="form-label">
+                                    Address*
+                                </label>
+                                <input type="text"
+                                    value={address}
+                                    className="input"
+                                    name="address"
+                                />
+                            </div>
+                            <div className="input-holder">
+                                <label htmlFor="form_message" className="form-label">
+                                    Comments
+                                </label>
+                                <input type="text"
+                                    className="input"
+                                    name="message"
+                                />
+                            </div>
+                            <button className="contact-button">
+                                Send
+                                <i className="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
                         </div>
                     </div>
                 </div>
             </div>
             : null}
+            <div className="home-image-row">
+                <div className="home-image-holder" onClick={() => setIsClicked(true)}>
+                    <img src={house} className="home-round-house" alt="Sell Your Home"/>
+                    <p className="home-round-par"> Sell Your Home </p>
+                </div>
+                <Link to="/properties" className="home-image-holder">
+                    <img src={house2} className="home-round-house" alt="Buy a Home"/>
+                    <p className="home-round-par"> Buy a Home </p>
+                </Link>
+            </div>
+            <div className="home-listing-container">
+                <h2 className="home-header2">
+                    Featured Listings
+                </h2>
+                {isLoaded ?                 
+                <Carousel responsive={responsive} centerMode={false} className="home-featured-holder">
+                    {featuredProperties()}
+                </Carousel>
+                : <div className="home-property-container"></div>}
+            </div>
             <div className="home-about-section">
                 <h2 className="home-header2">
                     Buy & Sell Real Estate in Grenada, Ms with Coltmor Realty.
@@ -172,112 +285,11 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="home-column">
-                        <img src={Chris} className="home-img" alt="Coltmor Realty Welcome to Grenada Ms"/>
+                        <iframe className="home-video" title="Coltmor Realty - A Realtor you can depend on." src="https://player.vimeo.com/video/405217984" width="640" height="360" frameBorder="0" allow="autoplay; fullscreen" allowFullScreen></iframe>
                     </div>
                 </div>
             </div>
-            <div className="home-listing-container">
-                <h2 className="home-header2">
-                    Featured Listings
-                </h2>
-                {isLoaded ?                 
-                <Carousel responsive={responsive} centerMode={false} className="home-featured-holder">
-                    {featuredProperties()}
-                </Carousel>
-                : <div className="home-property-container"></div>}
-                    
-
-            </div>
-            <div className="home-review-container">
-                <div className="arrow" onClick={handlePrev}>
-                    <i className="fas fa-chevron-left"></i>
-                </div>
-                <div className={count === 0 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "I just wanted to say Thank You again for all you did to help us in buying a home. I would definitely recommend you to anyone looking to buy a home. Your honesty and integrity were very much appreciated."
-                    </p>
-                </div>
-                <div className={count === 1 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "I would definitely use Chris again! He works hard to make your experience as easy as possible. It was easy to get in touch with him when I had questions. He was always eager to help in any way he could. Thank you Chris, for selling our house."
-                    </p>
-                </div>
-                <div className={count === 2 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "I just got off the phone with Chris and he was very informational  in the decision of buying my mother a new home he also was very helpful with mapping and distance information. Thank you so much  i’m very excited to start my new search for my mom and New home"
-                    </p>
-                </div>
-                <div className={count === 3 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "I was looking for a house in Grenada, MS. On Zillow. They gave Chris Reed’s profile which showed all his strengths in re estate. I had already terminated (2) other Buyer agents for not communicating and waiting on me to do all the work. Chris went above and beyond finding me a home. He took care of  all the little details as well as the large ones. Even after the sale he was help me get around in a new town telling me where to shop for different needs. I am very thankful for having Chris as my agent and now a friend."
-                    </p>
-                </div>
-                <div className={count === 4 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "Chris was relentless in his attempt to help us find a house. If he saw or heard of anything coming on the market he would let me know immediately. He was honest with us even when it meant he wouldn't make as much money off the sale. I could contact him any time day or night and he always seemed to  be willing to work around our schedule when viewing a home. I would definitely recommend giving him a try if you are looking for a realtor."
-                    </p>
-                </div>
-                <div className={count === 5 ? "home-review-box" : "none"}>
-                    <div className="home-review-rating">
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                        <i className="fas fa-star"></i>
-                    </div>
-                    <p className="home-review">
-                        "Great to work with!! <br/>
-                        Very responsive, over and above to take care of clients! He was a pleasure to work with and really helped make this process easy. <br/>
-                        Thanks for all you did!!!"
-                    </p>
-                </div>
-                <div className="arrow" onClick={handleNext}>
-                    <i className="fas fa-chevron-right"></i>
-                </div>
-            </div>
-            <div className="home-row">
-                <div className="home-form-holder">
-                    <h2 className="home-header2">
-                        Contact Us
-                    </h2>
-                    <Form />
-                </div>
-            </div>
+            <Reviews />
         </div>
     )
 }

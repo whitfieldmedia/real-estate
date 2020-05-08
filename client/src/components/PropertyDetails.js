@@ -1,20 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import Gallery from 'react-grid-gallery';
 import Form from './Form';
 import TourForm from './TourForm';
 import logoDark from '../assets/images/coltmor-realty.png';
+import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext, Image } from 'pure-react-carousel';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 import '../assets/css/details.css';
 
 export default function PropertyDetails () {
     const [ images, setImages ] = useState([]);
+    const [ isLoaded, setIsLoaded ] = useState(false)
     const [ isClicked, setIsClicked ] = useState(false)
     const [ isTourClicked, setIsTourClicked ] = useState(false)
-    const id = sessionStorage.getItem('propertyId')
-    const retsData = JSON.parse(sessionStorage.getItem('retsData'));
-    console.log(retsData)
+    const id = localStorage.getItem('propertyId')
+    const data = JSON.parse(localStorage.getItem('data'));
     useEffect(() => {
         window.scrollTo(0,0);
-    })
+        if(data) {
+            setIsLoaded(true)
+        } 
+    }, [data])
+
     function handleClick() {
         setIsClicked(true)
     }
@@ -40,9 +45,6 @@ export default function PropertyDetails () {
             var imgUrl = "http://www.promatchcomplete.com/pictures/GNMS/Listings/B/" + id + "-" + imgNum + ".jpg?Session=531000566"
             var img = {
                 src: imgUrl,
-                thumbnail: imgUrl,
-                thumbnailWidth: 320,
-                thumbnailHeight: 225,
                 alt: alt
             }
             imgArray.push(img);
@@ -54,23 +56,143 @@ export default function PropertyDetails () {
     function addCommas(num) {
         return (num + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
     }
+    function split(str) {
+        return str.match(/[A-Z][a-z]+|[0-9]+/g).join(" ")
+    }
+    function lotSize(str) {
+        if(str.split(' ')[1] === 'Acres') {
+            return str;
+        } else {
+            return str + ' Acres'
+        }
+    }
     function mapDetails () {
-        return retsData.data.results.filter(res => res.ListingID === id).map(res => {
+        return data.results.filter(res => res.ListingID === id).map(res => {
             var num = res.PhotoCount;
             var alt = res.StreetNumber + " " + res.StreetName;
             setPhotos(num, alt)
-            return(
-                <div key={res.ListingID} className="detail-container">
-                    <div className="detail-gallery-column">
-                        <Gallery images={images} id="grid-gallery" rowHeight={225} enableImageSelection={false} />
-                    </div>     
+            if(res.PropertyType === "LotsAndLand") {
+                return (
+                    <div key={res.ListingID} className="detail-container">
+                    <CarouselProvider 
+                        className="carousel-container"
+                        naturalSlideHeight={2}
+                        naturalSlideWidth={3}
+                        totalSlides={num}>
+                            <Slider>
+                                {images.map((img, index) => {
+                                    return (
+                                        <Slide className="carousel-img-holder" key={img.src} index={index}>
+                                            <Image className="carousel-img" src={img.src} alt={img.alt} />
+                                        </Slide>
+                                    )
+                                })}
+                        </Slider>
+                        <ButtonBack className="back-button"></ButtonBack>
+                        <ButtonNext className="next-button"></ButtonNext>
+                    </CarouselProvider>
                     <div className="detail-column">
                         <div className="detail-sticky-container">
                             <p className="detail-price">
                                 ${addCommas(res.ListPrice)}
                             </p>
                             <h1 className="detail-address">
-                                {res.StreetNumber} {res.StreetName} {res.City}, MS
+                                {res.StreetNumber} {res.StreetName} {Number(res.City) > 0 ? res.County : res.City}, MS
+                            </h1>
+                            <div className="detail-row">
+                                <p className="detail-text">
+                                    {lotSize(res.LotSizeDim)}
+                                </p>
+                            </div>
+                            <p className="detail-par">
+                                {res.ListingStatus} {split(res.PropertyType)}
+                            </p>
+                            <div className="detail-cta-row">
+                                <button onClick={handleClick} className="detail-contact-button">
+                                    Contact Agent
+                                </button>
+                                <button onClick={handleTourClick} className="detail-tour-button">
+                                    Take a Tour
+                                </button>
+                            </div>
+                        </div>
+                        <p className="detail-par">
+                            {res.PublicRemarks}
+                        </p>
+                        <div className="detail-facts-container">
+                            <h3 className="detail-header3">
+                                Improvements 
+                            </h3>
+                            <p className="detail-par">
+                                {res.improvements}
+                            </p>
+                            <h3 className="detail-header3">
+                                Property Details
+                            </h3>
+                            <div className="sub-fact-holder">
+                                <div className="sub-fact-column">
+                                    <h4 className="detail-header4">
+                                        Property
+                                    </h4>
+                                    <ul className="detail-list">
+                                        <li className="detail-list-item">
+                                            Lot Size: {res.LotSizeArea} Acres
+                                        </li>
+                                        <li className="detail-list-item">
+                                            Existing Structures: {res.ExistingStructures}
+                                        </li>
+                                        <li className="detail-list-item">
+                                            Other Buildings: {res.OtherBuildings}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> 
+                        <h3 className="detail-header4">
+                            Listing Provided By
+                        </h3>
+                        <p className="detail-par">
+                            {res.ListAgentFirstName} {res.ListAgentLastName}
+                        </p>
+                        <p className="detail-par">
+                            {res.ListOfficeName}
+                        </p>
+                        <p className="detail-par">
+                            {res.ListAgentOfficePhone}
+                        </p>
+                        <p className="detail-par">
+                            MLS Disclaimer: Copyright Grenada Board of Realtors. All rights reserved. Information is deemed reliable but not guaranteed.
+                        </p>
+                    </div>
+                </div>
+                )
+            }
+            return(
+                <div key={res.ListingID} className="detail-container">
+                    <CarouselProvider 
+                        className="carousel-container"
+                        naturalSlideHeight={2}
+                        naturalSlideWidth={3}
+                        totalSlides={num}>
+                            <Slider>
+                                {images.map((img, index) => {
+                                    return (
+                                        <Slide className="carousel-img-holder" key={img.src} index={index}>
+                                            <Image className="carousel-img" src={img.src} alt={img.alt} />
+                                        </Slide>
+                                    )
+                                })}
+                        </Slider>
+                        <ButtonBack className="back-button"></ButtonBack>
+                        <ButtonNext className="next-button"></ButtonNext>
+                    </CarouselProvider>
+                    <div className="detail-column">
+                        <div className="detail-sticky-container">
+                            <p className="detail-price">
+                                ${addCommas(res.ListPrice)}
+                            </p>
+                            <h1 className="detail-address">
+                                {res.StreetNumber} {res.StreetName} {Number(res.City) > 0 ? res.County : res.City}, MS
                             </h1>
                             <div className="detail-row">
                                 <p className="detail-text">
@@ -83,6 +205,9 @@ export default function PropertyDetails () {
                                     {res.LivingArea} sqft
                                 </p>
                             </div>
+                            <p className="detail-par">
+                                {res.ListingStatus} {split(res.PropertyType)}
+                            </p>
                             <div className="detail-cta-row">
                                 <button onClick={handleClick} className="detail-contact-button">
                                     Contact Agent
@@ -262,6 +387,8 @@ export default function PropertyDetails () {
         })
     }
     return ( 
+        isLoaded 
+        ?
         <div className="detail-page">
             {mapDetails()}
             {isClicked
@@ -326,6 +453,10 @@ export default function PropertyDetails () {
                 </div>
             </div>
             : null}
+        </div>
+        : 
+        <div className="property-page">
+            <div className="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
         </div>
     )
 }

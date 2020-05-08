@@ -1,16 +1,78 @@
-.mortgage_calculator_page {
-  width: 100%;
-  height: auto;
+.calc-wrapper {
+  width: 80%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
+  text-align: center;
+  margin: 50px auto;
 }
 
-.mortgageCalculator {
-  width: 90vw;
-  height: 400px;
+.calc-input {
+  border: 1px solid #A7A6AB;
+  height: 25px;
+  width: 200px;
+  font-size: 16px;
+  margin: 0 0 5px 0;
+  padding: 0 0 0 10px;
+  color: #2A2A34;
+  font-family: "Open Sans", sans-serif;
+}
+
+.calc-input:focus {
+  border: 1px solid #fc9258;
+  box-shadow: 0px 0px 4px #fc9258;
+}
+
+.calc-input-label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #292A33;
+  margin: 5px 0 3px 0;
+}
+
+.input-holder {
+  width: 200px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.payment-holder {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+}
+
+.payment-par {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 18px;
+  color: #0F0F0F;
+  font-weight: bold;
+}
+
+.monthly-payment {
+  font-size: 25px;
+  color: #131313;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  font-weight: 500;
+  padding: 0;
+}
+
+.calc-par {
+  text-align: center;
+}
+
+.calc-header {
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
 }
 
 /*# sourceMappingURL=mortgageCalculator.css.map */

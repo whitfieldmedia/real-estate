@@ -77,9 +77,9 @@ retsRouter.get('/', (req, res) => {
             })
             .then(function (fields) {
                 // console.log("___________----------____________")
-                return client.search.query("Property", "ResidentialProperty", "(DaysOnMarket=1+)", {limit: 100,offset:0})
+                return client.search.query("Property", "ResidentialProperty", "(DaysOnMarket=1+)", {limit:100,offset:0})
                     .then(function (searchData) {
-                      // console.log(searchData)
+                    console.log(searchData)
                     res.send(searchData)
                 })
     }).catch(function(err) {
@@ -89,6 +89,135 @@ retsRouter.get('/', (req, res) => {
         console.log('    ' + (error.stack||error).replace(/\n/g, '\n   '))
     })
 })
+})
+retsRouter.get('/land', (req, res) => {
+  rets.getAutoLogoutClient(clientSettings, function(client) {
+    return client.metadata.getResources()
+      .then(function() {
+        return client.metadata.getClass("Property");
+      }).then(function(data) {
+        return data;
+      }).then(function() {
+          return client.metadata.getTable("Property", "LotsAndLand");
+      }).then(function(data) {
+          return data.results[0].metadata
+      }).then(function (fieldsData) {
+          var plucked = [];
+          for (var fieldItem = 0; fieldItem < fieldsData.length; fieldItem++) {
+              plucked.push(fieldsData[fieldItem].SystemName);
+          }
+          return plucked;
+      }).then(function (fields) {
+        // console.log("___________----------____________")
+        return client.search.query("Property", "LotsAndLand", "(DaysOnMarket=1+)", {limit:100,offset:0})
+            .then(function (searchData) {
+            console.log(searchData)
+            res.send(searchData)
+        })
+      }).catch(function(err) {
+        var error = err.error || err;
+        console.log(" ERROR: issue encountered");
+        outputFields(error);
+      console.log('    ' + (error.stack||error).replace(/\n/g, '\n   '))
+  })
+  })
+})
+retsRouter.get('/common', (req, res) => {
+  rets.getAutoLogoutClient(clientSettings, function(client) {
+    return client.metadata.getResources()
+      .then(function() {
+        return client.metadata.getClass("Property");
+      }).then(function(data) {
+        return data;
+      }).then(function() {
+          return client.metadata.getTable("Property", "CommonInterest");
+      }).then(function(data) {
+          return data.results[0].metadata
+      }).then(function (fieldsData) {
+          var plucked = [];
+          for (var fieldItem = 0; fieldItem < fieldsData.length; fieldItem++) {
+              plucked.push(fieldsData[fieldItem].SystemName);
+          }
+          return plucked;
+      }).then(function (fields) {
+        // console.log("___________----------____________")
+        return client.search.query("Property", "CommonInterest", "(DaysOnMarket=1+)", {limit:100,offset:0})
+            .then(function (searchData) {
+            console.log(searchData)
+            res.send(searchData)
+        })
+      }).catch(function(err) {
+        var error = err.error || err;
+        console.log(" ERROR: issue encountered");
+        outputFields(error);
+      console.log('    ' + (error.stack||error).replace(/\n/g, '\n   '))
+  })
+  })
+})
+retsRouter.get('/multi', (req, res) => {
+  rets.getAutoLogoutClient(clientSettings, function(client) {
+    return client.metadata.getResources()
+      .then(function() {
+        return client.metadata.getClass("Property");
+      }).then(function(data) {
+        return data;
+      }).then(function() {
+          return client.metadata.getTable("Property", "MultiFamily");
+      }).then(function(data) {
+          return data.results[0].metadata
+      }).then(function (fieldsData) {
+          var plucked = [];
+          for (var fieldItem = 0; fieldItem < fieldsData.length; fieldItem++) {
+              plucked.push(fieldsData[fieldItem].SystemName);
+          }
+          return plucked;
+      }).then(function (fields) {
+        // console.log("___________----------____________")
+        return client.search.query("Property", "MultiFamily", "(DaysOnMarket=1+)", {limit:100,offset:0})
+            .then(function (searchData) {
+            console.log(searchData)
+            res.send(searchData)
+        })
+      }).catch(function(err) {
+        var error = err.error || err;
+        console.log(" ERROR: issue encountered");
+        outputFields(error);
+      console.log('    ' + (error.stack||error).replace(/\n/g, '\n   '))
+  })
+  })
+})
+
+retsRouter.get('/farm', (req, res) => {
+  rets.getAutoLogoutClient(clientSettings, function(client) {
+    return client.metadata.getResources()
+      .then(function() {
+        return client.metadata.getClass("Property");
+      }).then(function(data) {
+        return data;
+      }).then(function() {
+          return client.metadata.getTable("Property", "Farm");
+      }).then(function(data) {
+          return data.results[0].metadata
+      }).then(function (fieldsData) {
+          var plucked = [];
+          for (var fieldItem = 0; fieldItem < fieldsData.length; fieldItem++) {
+              plucked.push(fieldsData[fieldItem].SystemName);
+          }
+          return plucked;
+      }).then(function (fields) {
+        // console.log("___________----------____________")
+        return client.search.query("Property", "CommonInterest", "(DaysOnMarket=1+)", {limit:100,offset:0})
+            .then(function (searchData) {
+            console.log(searchData)
+            res.send(searchData)
+        })
+      }).catch(function(err) {
+        var error = err.error || err;
+        console.log(" ERROR: issue encountered");
+        outputFields(error);
+      console.log('    ' + (error.stack||error).replace(/\n/g, '\n   '))
+  })
+  })
 })
 
 module.exports = retsRouter;

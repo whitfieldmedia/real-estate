@@ -13,12 +13,15 @@ export default function Nav() {
     }
     return (
         <nav className="navbar">
-            <Link to="/" className="nav-logo-holder">
-                <img src={logo} className="nav-logo" alt="Coltmor Realty Co." />
-                <p className="nav-phone-link">
+            <div className="nav-logo-holder">
+                <Link to="/">
+                    <img src={logo} className="nav-logo" alt="Coltmor Realty Co." />
+                </Link>
+                <a href="tel:6622297003" className="nav-phone-link">
                     (662) 229-7003
-                </p>
-            </Link>
+                </a>
+            </div>
+
             <div onClick={handleClick} className={open ? "nav-toggle open" : "nav-toggle closed"}>
                 <span className="bar" id="bar1"></span>
                 <span className="bar" id="bar2"></span>

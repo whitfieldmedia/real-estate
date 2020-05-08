@@ -10,22 +10,17 @@
 }
 
 .home-hero-wrapper {
-  height: 80vh;
+  height: 50vw;
   width: 100vw;
+  max-height: 70vh;
   position: relative;
   margin: 0;
   padding: 0;
   overflow: hidden;
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.1);
-  background-image: url("../images/living_room.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-blend-mode: overlay;
 }
 
 .home-header {
@@ -34,14 +29,16 @@
   color: #ffffff;
   font-size: 35px;
   z-index: 1;
+  font-weight: bold;
   font-family: "Nunito", sans-serif;
+  text-shadow: 0 0 10px #0F0F0F;
 }
 
 .home-header2 {
   font-family: "Nunito", sans-serif;
   font-size: 25px;
   color: #3A3C3F;
-  margin: 50px auto 25px auto;
+  margin: 25px auto 25px auto;
   padding: 0;
   text-align: center;
   max-width: 90%;
@@ -63,28 +60,198 @@
 }
 
 .home-hero {
-  width: auto;
+  width: 100vw;
   height: auto;
-  min-width: 100vw;
-  min-height: 100%;
-  max-height: 150%;
-  max-width: 150vw;
   position: absolute;
-  filter: brightness(60%);
   z-index: 0;
   left: 0px;
-  bottom: 0;
   margin: 0;
   padding: 0;
   display: block;
+  filter: brightness(90%);
+}
+
+.home-hero-mid {
+  display: none;
 }
 
 .home-hero-logo {
-  height: 175px;
+  height: 100px;
   width: auto;
   z-index: 1;
-  margin-top: 150px;
-  margin-bottom: 50px;
+  margin-top: 0px;
+  margin-bottom: 25px;
+}
+
+.home-bs-wrapper {
+  width: 80%;
+  max-width: 750px;
+  height: auto;
+  z-index: 2;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 50px 0;
+}
+
+.home-bs-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.home-bs-select {
+  color: #3A3C3F;
+  margin: 0 10px 0 0;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.home-bs-selected {
+  color: #ffffff;
+  margin: 0 10px 0 0;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.home-sell-row {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  margin: 0 auto;
+  z-index: 2;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+}
+
+.home-address-input {
+  width: 79%;
+  max-width: 580px;
+  height: 40px;
+  z-index: 3;
+  border: none;
+  padding-left: 15px;
+  font-size: 16px;
+  display: block;
+  background: #ffffff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+}
+
+.city-label {
+  font-size: 18px;
+  border-radius: 5px;
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  height: 40px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.city-dropdown {
+  z-index: 3;
+  height: 40px;
+  font-size: 16px;
+  max-width: 600px;
+  width: 79%;
+  display: block;
+  font-weight: bold;
+  color: #444;
+  padding: 10px 20px 10px 15px;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+
+.home-sell-button {
+  height: 40px;
+  width: auto;
+  border: none;
+  background: #D97A49;
+  color: #ffffff;
+  font-size: 16px;
+  margin-left: 8px;
+  padding: 0 10px;
+  text-decoration: none;
+  display: flex;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+}
+
+.home-sell-button2 {
+  display: none;
+}
+
+.home-image-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: -75px;
+  z-index: 4;
+  width: 90%;
+  max-width: 1000px;
+  margin: -75px auto 0 auto;
+}
+
+.home-image-holder {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 250px;
+  position: relative;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.home-round-house {
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  z-index: 5;
+  border: 5px solid #fff;
+  box-shadow: 0px 0px 3px #3A3C3F;
+}
+
+.home-round-par {
+  position: absolute;
+  color: #fff;
+  font-size: 25px;
+  top: 30%;
+  z-index: 6;
+  font-family: "Nunito", sans-serif;
+  font-weight: bold;
+  text-shadow: 0px 0px 5px #0F0F0F;
 }
 
 .home-popup-form {
@@ -154,7 +321,7 @@
 }
 
 .popup-par {
-  font-family: "Exo", sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 18px;
   color: #545454;
   text-decoration: none;
@@ -245,6 +412,7 @@
   flex-flow: row;
   justify-content: space-evenly;
   align-items: center;
+  padding-bottom: 50px;
 }
 
 .arrow i {
@@ -273,11 +441,33 @@
   font-size: 23px;
 }
 
+.home-property-holder {
+  display: flex;
+  width: 30vw;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  margin: 5px;
+  border-bottom: 3px solid #fc9258;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5);
+}
+
+.home-property-row {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  margin: 5px 0 0 0;
+}
+
 .home-listing-container {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  margin: 25px 0;
 }
 
 .home-featured-holder {
@@ -292,35 +482,54 @@
   justify-content: flex-start;
   align-items: center;
   height: 100%;
+  width: 100%;
   text-decoration: none;
 }
 
-.home-property-img {
-  width: 400px;
-  height: auto;
+.home-property-img-holder {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  object-position: center;
 }
 
-.home-property-detail-column {
-  width: 400px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
+.home-property-img {
+  width: auto;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
 }
 
 .home-price {
   font-family: "Nunito", sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   color: #3A3C3F;
   font-weight: 700;
-  margin: 25px 0 5px 0;
+  margin: 0 20px;
 }
 
-.home-city {
+.home-property-text {
   font-family: "Nunito", sans-serif;
-  font-size: 22px;
+  font-size: 18px;
   color: #3A3C3F;
-  margin: 5px 0;
+  margin: 0;
+  text-decoration: capitalize;
+}
+
+.home-property-par {
+  font-family: "Nunito", sans-serif;
+  font-size: 14px;
+  color: #444444;
+  margin: 0 0 10px 0;
+  padding: 0;
 }
 
 .home-property-row {
@@ -330,14 +539,17 @@
   align-items: center;
 }
 
-.home-property-text {
-  font-family: "Montserrat", sans-serif;
+.home-property-city {
   font-size: 18px;
-  color: #444444;
-  margin: 5px 10px;
+  font-family: "Nunito", sans-serif;
+  color: #3A3C3F;
 }
 
 @media only screen and (max-width: 1200px) {
+  .home-property-holder {
+    width: 45vw;
+  }
+
   .home-header {
     font-size: 32px;
   }
@@ -378,6 +590,38 @@
   .home-img {
     max-width: 45vw;
   }
+
+  .home-image-holder {
+    height: 200px;
+    width: 200px;
+  }
+
+  .home-round-house {
+    height: 200px;
+    width: 200px;
+  }
+
+  .home-hero {
+    display: none;
+  }
+
+  .home-hero-wrapper {
+    position: relative;
+    height: 70vh;
+  }
+
+  .home-hero-mid {
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 0;
+    background: url("../images/coltmor-realty-mid.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-position: center;
+    filter: brightness(90%);
+  }
 }
 @media only screen and (max-width: 950px) {
   .home-header {
@@ -405,6 +649,23 @@
     margin: 0;
     padding: 0;
   }
+
+  .home-sell-button {
+    font-size: 14px;
+  }
+
+  .city-label {
+    font-size: 16px;
+  }
+
+  .city-dropdown {
+    padding: 0 0 0 15px;
+  }
+
+  .home-sell-row {
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media only screen and (max-width: 900px) {
   .home-header {
@@ -427,16 +688,41 @@
   .home-review {
     font-size: 16px;
   }
-}
-@media only screen and (max-width: 850px) {
+
   .home-hero-logo {
     height: 75px;
   }
 
-  .home-header {
-    max-width: 450px;
+  .home-hero-wrapper {
+    justify-content: flex-start;
   }
 
+  .home-hero-logo {
+    margin-top: 100px;
+  }
+
+  .home-header {
+    font-size: 25px;
+  }
+
+  .home-bs-wrapper {
+    margin: 25px auto;
+  }
+
+  .home-property-img-holder {
+    height: 200px;
+  }
+
+  .home-property-text {
+    font-size: 16px;
+  }
+
+  .home-price {
+    font-size: 20px;
+    margin: 0 10px;
+  }
+}
+@media only screen and (max-width: 850px) {
   .popup-form-wrapper {
     padding: 25px 50px;
   }
@@ -447,6 +733,106 @@
 
   .popup-logo {
     width: 175px;
+  }
+
+  .home-image-holder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .home-round-house {
+    width: 175px;
+    height: 175px;
+  }
+
+  .home-round-par {
+    font-size: 22px;
+  }
+
+  .home-hero-wrapper {
+    height: 60vh;
+  }
+
+  .home-hero-logo {
+    margin-top: 75px;
+  }
+
+  .home-bs-wrapper {
+    width: 90%;
+  }
+
+  .home-property-city {
+    font-size: 16px;
+  }
+}
+@media only screen and (max-width: 750px) {
+  .home-header {
+    font-size: 24px;
+  }
+
+  .home-address-input {
+    width: 100%;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+    border: 1px solid #aaa;
+    border-radius: 5px;
+  }
+
+  .home-sell-button {
+    width: 140px;
+    padding: 0;
+  }
+
+  .home-sell-row {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .home-sell-button {
+    display: none;
+  }
+
+  .home-sell-button2 {
+    height: 40px;
+    width: 50px;
+    font-size: 22px;
+    background: #D97A49;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+    text-decoration: none;
+  }
+
+  .home-video {
+    max-width: 100vw;
+    max-height: 56.25vw;
+  }
+
+  .home-property-text {
+    margin: 0 3px;
+  }
+
+  .home-price {
+    margin: 0 5px;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .home-property-holder {
+    width: 80vw;
+    margin: 0 auto;
+  }
+
+  .home-price {
+    font-size: 22px;
+    margin: 0 20px;
+  }
+
+  .home-property-text {
+    font-size: 18px;
+    margin: 0 5px;
   }
 }
 @media only screen and (max-width: 675px) {
@@ -488,6 +874,11 @@
     display: block;
   }
 }
+@media only screen and (max-width: 650px) {
+  .home-header {
+    font-size: 22px;
+  }
+}
 @media only screen and (max-width: 550px) {
   .popup-header {
     font-size: 24px;
@@ -504,6 +895,75 @@
 
   .home-hero-logo {
     height: 60px;
+  }
+
+  .home-image-row {
+    margin: 25px auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .home-image-holder {
+    width: 250px;
+    height: 250px;
+    margin: 10px auto;
+  }
+
+  .home-round-house {
+    width: 250px;
+    height: 250px;
+  }
+
+  .home-round-par {
+    font-size: 25px;
+  }
+
+  .home-bs-select {
+    font-size: 14px;
+  }
+
+  .home-bs-selected {
+    font-size: 14px;
+  }
+
+  .city-label {
+    padding: 0;
+    width: 115px;
+  }
+
+  .home-sell-row {
+    width: 80%;
+    background: none;
+  }
+
+  .home-bs-wrapper {
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+  }
+
+  .home-bs-select {
+    background: inherit;
+    color: #ffffff;
+    margin: 0 10px;
+  }
+
+  .home-bs-selected {
+    background: inherit;
+    border-bottom: 2px solid #D97A49;
+    margin: 0 10px;
+  }
+
+  .home-property-holder {
+    width: 100vw;
+    margin: 0;
+  }
+
+  .home-featured-holder {
+    width: 100vw;
   }
 }
 @media only screen and (max-width: 450px) {
@@ -541,8 +1001,16 @@
   .home-property-detail-column {
     width: 300px;
   }
+
+  .home-bs-wrapper {
+    width: 90%;
+  }
+
+  .home-sell-row {
+    width: 95%;
+  }
 }
-@media only screen and (max-width: 375px) {
+@media only screen and (max-width: 400px) {
   .popup-header {
     font-size: 20px;
   }
@@ -554,6 +1022,20 @@
 
   .home-header2 {
     font-size: 18px;
+  }
+
+  .home-bs-wrapper {
+    width: 100%;
+  }
+
+  .home-sell-row {
+    padding: 5px 0;
+    width: 95%;
+  }
+}
+@media only screen and (max-height: 625px) {
+  .home-header {
+    display: none;
   }
 }
 

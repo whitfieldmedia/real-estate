@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 export default function Mapbox(props) {
-    const localState = JSON.parse(sessionStorage.getItem('retsData'));
+    const localState = JSON.parse(localStorage.getItem('retsData'));
     function handleClick (id) {
         props.isClicked(id)
-        return sessionStorage.setItem('topProperty', `${id}`)
+        return localStorage.setItem('topProperty', `${id}`)
     }
     useEffect(() => {
-        if(!sessionStorage.topProperty){
-        sessionStorage.setItem('topProperty', 0)
+        if(!localStorage.topProperty){
+        localStorage.setItem('topProperty', 0)
         }
     },[])
 
