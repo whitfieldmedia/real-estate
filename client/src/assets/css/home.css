@@ -146,6 +146,7 @@
   padding-left: 15px;
   font-size: 16px;
   display: block;
+  position: relative;
   background: #ffffff;
   background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
@@ -545,6 +546,20 @@
   color: #3A3C3F;
 }
 
+.home-property-holder {
+  width: 18vw;
+}
+
+@media only screen and (max-width: 2200px) {
+  .home-property-holder {
+    width: 23vw;
+  }
+}
+@media only screen and (max-width: 1700px) {
+  .home-property-holder {
+    width: 30vw;
+  }
+}
 @media only screen and (max-width: 1200px) {
   .home-property-holder {
     width: 45vw;
@@ -736,8 +751,8 @@
   }
 
   .home-image-holder {
-    width: 150px;
-    height: 150px;
+    width: 175px;
+    height: 175px;
   }
 
   .home-round-house {
@@ -746,7 +761,7 @@
   }
 
   .home-round-par {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .home-hero-wrapper {
@@ -893,31 +908,23 @@
     font-size: 20px;
   }
 
-  .home-hero-logo {
-    height: 60px;
-  }
-
   .home-image-row {
     margin: 25px auto;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
   }
 
   .home-image-holder {
-    width: 250px;
-    height: 250px;
-    margin: 10px auto;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
   }
 
   .home-round-house {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
   }
 
   .home-round-par {
-    font-size: 25px;
+    font-size: 18px;
   }
 
   .home-bs-select {
@@ -964,6 +971,22 @@
 
   .home-featured-holder {
     width: 100vw;
+  }
+
+  .home-hero-wrapper {
+    height: 40vh;
+  }
+
+  .home-header {
+    display: none;
+  }
+
+  .home-bs-wrapper {
+    margin: 0;
+  }
+
+  .home-hero-logo {
+    margin: 20px;
   }
 }
 @media only screen and (max-width: 450px) {
@@ -1031,6 +1054,20 @@
   .home-sell-row {
     padding: 5px 0;
     width: 95%;
+  }
+
+  .home-image-holder {
+    width: 125px;
+    height: 125px;
+  }
+
+  .home-round-house {
+    width: 125px;
+    height: 125px;
+  }
+
+  .home-round-par {
+    font-size: 16px;
   }
 }
 @media only screen and (max-height: 625px) {

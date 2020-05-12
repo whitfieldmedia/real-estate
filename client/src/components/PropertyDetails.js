@@ -19,7 +19,6 @@ export default function PropertyDetails () {
             setIsLoaded(true)
         } 
     }, [data])
-
     function handleClick() {
         setIsClicked(true)
     }
@@ -74,6 +73,7 @@ export default function PropertyDetails () {
             if(res.PropertyType === "LotsAndLand") {
                 return (
                     <div key={res.ListingID} className="detail-container">
+                    {/* <GetPhotos id={res.ListingID} count={res.PhotoCount} /> */}
                     <CarouselProvider 
                         className="carousel-container"
                         naturalSlideHeight={2}
@@ -169,6 +169,7 @@ export default function PropertyDetails () {
             }
             return(
                 <div key={res.ListingID} className="detail-container">
+                    {/* <GetPhotos id={res.ListingID} count={res.PhotoCount} /> */}
                     <CarouselProvider 
                         className="carousel-container"
                         naturalSlideHeight={2}

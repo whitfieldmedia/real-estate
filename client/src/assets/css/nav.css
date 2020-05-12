@@ -16,8 +16,8 @@
 
 .nav-logo-holder {
   position: absolute;
-  left: 75px;
-  top: -15px;
+  left: 50px;
+  top: 0px;
   padding: 0;
   margin: 0;
   display: flex;
@@ -28,17 +28,17 @@
 }
 
 .nav-logo {
-  height: 125px;
+  height: 80px;
   width: auto;
   display: block;
   position: relative;
   margin: 0;
-  padding: 0;
+  padding: 5px 10px;
 }
 
 .nav-phone-link {
-  margin: -25px 0 0 0;
-  padding: 0;
+  margin: 0;
+  padding: 5px 10px;
   font-family: "Nunito", sans-serif;
   font-size: 18px;
   color: #545454;
@@ -75,14 +75,15 @@
   display: none;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
   .nav-logo-holder {
-    left: 50px;
+    left: 25px;
   }
-
+}
+@media only screen and (max-width: 900px) {
   .nav-logo {
-    height: 90px;
-    margin-top: -10px;
+    height: 60px;
+    padding: 0 10px;
   }
 
   .navbar {
@@ -98,7 +99,8 @@
   }
 
   .nav-phone-link {
-    margin: -20px 0 0 0;
+    margin: 0;
+    padding: 3px 10px;
     font-size: 16px;
   }
 }
@@ -113,15 +115,7 @@
   }
 
   .nav-logo {
-    height: 70px;
-  }
-
-  .nav-logo-holder {
-    top: 7px;
-  }
-
-  .nav-phone-link {
-    font-size: 14px;
+    height: 50px;
   }
 }
 @media only screen and (max-width: 750px) {
@@ -185,6 +179,11 @@
     padding: 10px 12px;
     font-size: 16px;
     text-align: left;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .nav-logo-holder {
+    left: 0px;
   }
 }
 

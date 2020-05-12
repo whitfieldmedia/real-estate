@@ -94,15 +94,15 @@ export default function Properties() {
         }
     }
     function mapProperties(res) {
-        var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${res.ListingID}-01.jpg?Session=531000566`
-        var id = res.ListingID
+        var id = res.ListingID;
+        var url = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${id}-01.jpg?Session=531000566`
         if(res.PropertyType === "LotsAndLand") {
             return (
                 <Link to={`/property-details/${res.ListingID}`} className="property-holder"
                     onClick={() => handleClick(id)}
                     key={res.ListingID}>
                     <div className="property-img-holder">
-                        <img className="property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                        <img src={url} className="home-property-img" alt={res.ListingID} />
                     </div>
                     <div className="property-row">
                         <p className="property-price">
@@ -126,7 +126,7 @@ export default function Properties() {
                     onClick={() => handleClick(id)}
                     key={res.ListingID}>
                         <div className="property-img-holder">
-                            <img className="property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                            <img src={url} className="home-property-img" alt={res.ListingID} />
                         </div>
                         <div className="property-row">
                             <p className="property-price">

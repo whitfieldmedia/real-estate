@@ -4,14 +4,20 @@ import realtor from '../assets/images/realtor.png';
 import zillow from '../assets/images/zillow_logo.png';
 import eho from '../assets/images/fheo125.png';
 import realtorLogo from '../assets/images/web_R_blk.jpg';
+import { Link } from 'react-router-dom'
 import '../assets/css/footer.css';
 
 export default function Footer() {
     return(
         <footer>
             <div className="footer-row">
-                <div className="footer-column">
-                    <img src={logo} className="footer-logo" alt="Coltmor Realty"/>
+                <div className="footer-logo-column">
+                    <Link to="/" className="footer-logo-holder">
+                        <img src={logo} className="footer-logo" alt="Coltmor Realty"/>
+                    </Link>
+                    <a href="tel:6622297003" className="footer-logo-phone">
+                        (662) 229-7003
+                    </a>
                 </div>
                 <div className="footer-column">
                     <div className="footer-text-row">
@@ -51,7 +57,7 @@ export default function Footer() {
                     </div>
                 </div>
             </div>
-            <div className="footer-row">
+            <div className="footer-social-row">
                 <a className="footer-social" 
                     target="_blank"
                     rel="noopener noreferrer"
@@ -89,7 +95,7 @@ export default function Footer() {
                 <img src={realtor} className="footer-social-logo" alt="Realtor.com"/>
                 </a>
             </div>
-            <div className="footer-row">
+            <div className="footer-social-row">
                 <div className="footer-logo2">
                     <img className="footer-eho" src={eho} alt="equal housing opportunity"/>
                 </div>

@@ -19,8 +19,12 @@ export default function Home() {
     const [ sell, setSell ] = useState(true)
     const [ city, setCity ] = useState('')
     const responsive = {
+        extraLargeDesktop: {
+            breakpoint: { max: 5000, min: 2200 },
+            items: 5
+        },
         superLargeDesktop: {
-          breakpoint: { max: 2125, min: 1700 },
+          breakpoint: { max: 2200, min: 1700 },
           items: 4,
         },
         desktop: {
@@ -40,7 +44,7 @@ export default function Home() {
         window.scrollTo(0,0);
         if(data) {
             setIsLoaded(true)
-        }
+        } 
     }, [data])
     const handleClose = () => {
         return setIsClicked(false)
@@ -64,12 +68,12 @@ export default function Home() {
     }
     function featuredProperties() {
         return data.results.filter(res => res.ListAgentOfficeID === "COLT55").sort((a, b) => b.ListPrice-a.ListPrice).map(res => {
-            var img = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${res.ListingID}-01.jpg?Session=531000566`
+            var url = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${res.ListingID}-01.jpg?Session=531000566`
             if(res.PropertyType === "LotsAndLand") {
                 return (
                     <Link to={`/property-details/${res.ListingID}`} onClick={() => setPropertyId(res.ListingID)} className="home-property-holder" key={res.ListingID}>
                         <div className="home-property-img-holder">
-                            <img className="home-property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                            <img src={url} className="home-property-img" alt={res.ListingID} />
                         </div>
                         <div className="home-property-row">
                             <p className="home-price">
@@ -91,7 +95,7 @@ export default function Home() {
                 return (
                     <Link to={`/property-details/${res.ListingID}`} onClick={() => setPropertyId(res.ListingID)} className="home-property-holder" key={res.ListingID}>
                         <div className="home-property-img-holder">
-                            <img className="home-property-img" src={img} alt={res.StreetNumber + " " + res.StreetName} />
+                            <img src={url} className="home-property-img" alt={res.ListingID} />
                         </div>
                         <div className="home-property-row">
                             <p className="home-price">
@@ -122,7 +126,10 @@ export default function Home() {
         localStorage.setItem('sort', 'city')
         localStorage.setItem('city', city)
     }
-
+    function handleAddressChange(e) {
+        e.preventDefault();
+        setAddress(e.target.value)
+    }
     return (
         <div className="home-page">
             <header className="home-hero-wrapper">
@@ -147,7 +154,7 @@ export default function Home() {
                             className="home-address-input"
                             name="address"
                             value={address}
-                            onChange={(e) => setAddress(e.target.value)}
+                            onChange={(e) => handleAddressChange(e)}
                             placeholder="Address, City, State & Zip"
                         />
                         <button className="home-sell-button" onClick={() => setIsClicked(true)}> Sell Your Home </button>

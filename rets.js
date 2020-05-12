@@ -2,6 +2,7 @@ const rets = require('rets-client');
 require("dotenv").config();
 const express = require('express');
 const retsRouter = express.Router();
+const ImgixClient = require('imgix-core-js');
 
 const clientSettings = {
     loginUrl: 'http://retsexport1.promatchcomplete.com:49202/login',
@@ -43,6 +44,29 @@ function outputFields(obj, opts) {
     }
     console.log("");
 }
+
+retsRouter.get('/photo', (req, res) => {
+  console.log(req.query.id);
+  var imgUrl = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${req.query.id}-01.jpg?Session=531000566`
+  var client = new ImgixClient({
+    domain:process.env.URL,
+    secureURLToken:process.env.TOKEN
+  })
+  var url = client.buildURL(imgUrl, {})
+  res.send(url);
+})
+
+retsRouter.get('/photos', (req, res) => {
+  var id = req.query.id;
+  var index = req.query.index;
+  var imgUrl = `http://www.promatchcomplete.com/pictures/GNMS/Listings/b/${id}-${index}.jpg?Session=531000566`
+  var client = new ImgixClient({
+    domain:process.env.URL,
+    secureURLToken:process.env.TOKEN
+  })
+  var url = client.buildURL(imgUrl, {})
+  res.send(url);
+})
 
 retsRouter.get('/', (req, res) => {
     rets.getAutoLogoutClient(clientSettings, function(client) {
